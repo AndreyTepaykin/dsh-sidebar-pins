@@ -1,0 +1,55 @@
+{
+  "name": "dsh-sidebar-pins",
+  "version": "0.1.0",
+  "description": "Pinned-sessions block for the DeepSeek Harness sidebar: a collapsible pinned panel above the Settings row, hover pin buttons on session rows and a session-header toggle. Pins live in the plugin's own settings namespace and are migrated once from dsh-session-pin. Written for DSH 0.1.5-rc.1, where the host-side session reorder no longer reaches the browser-rendered sidebar.",
+  "license": "MIT",
+  "author": "Andrey Tepaykin (https://github.com/AndreyTepaykin)",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "pinned-sessions",
+    "sidebar",
+    "session-pin"
+  ],
+  "homepage": "https://github.com/AndreyTepaykin/dsh-sidebar-pins#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreyTepaykin/dsh-sidebar-pins.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AndreyTepaykin/dsh-sidebar-pins/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "README.en.md"
+  ],
+  "scripts": {
+    "test": "node --test \"test/*.test.mjs\"",
+    "check:schema": "node scripts/check-schema-envelope.mjs"
+  }
+}

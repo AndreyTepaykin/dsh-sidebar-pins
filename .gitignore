@@ -1,0 +1,17 @@
+# Node / pnpm
+node_modules/
+npm-debug.log*
+pnpm-debug.log*
+
+# Local exports and archives
+*.zip
+*.log
+tmp/
+.cache/
+
+# OS and IDE
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/

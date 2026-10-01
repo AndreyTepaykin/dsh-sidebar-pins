@@ -1,0 +1,8 @@
+# dsh-sidebar-pins bundle patch.
+# The host half is a no-op policy holder: all pin state lives in the
+# `session-pin` settings namespace owned by dsh-session-pin, and every surface
+# of this plugin is browser-side. The row exists so the client-bundle scanner
+# can hand `lib/client.js` to the page (dsh.client in package.json).
+- insert:
+    - id: dsh-sidebar-pins
+      name: dsh-sidebar-pins
