@@ -1,4 +1,4 @@
-[English](README.en.md) | Русский
+[English](README.md) | Русский
 
 # dsh-sidebar-pins
 

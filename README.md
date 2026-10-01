@@ -1,9 +1,9 @@
-English | [Русский](README.md)
+English | [Russian](README.ru.md)
 
 # dsh-sidebar-pins
 
 Self-contained pinned sessions for the DeepSeek Harness left sidebar: its own set of
-pins, its own pin buttons, and a **"📌 ЗАКРЕПЛЁННЫЕ"** block at the top of the sidebar —
+pins, its own pin buttons, and a **"📌 PINNED"** block at the top of the sidebar —
 instead of a pop-up that drifts into the top-right corner and closes on an outside click.
 
 The plugin is written for **DSH 0.1.5-rc.1** and replaces `dsh-session-pin` entirely:
@@ -26,7 +26,7 @@ once it is installed, the old plugin can be removed (see "Removing the old plugi
 
 | Surface | Behaviour |
 |---|---|
-| "Закреплённые" block | Inside the sidebar footer, **above the "Настройки" row**. The location is derived only from its own anchor marker: the entire chain of containers from it upwards is collected, and the panel seats itself before the branch that leads to the anchor. Containers that lay out their children in a row (the stock `footerActions` is exactly that) are skipped by measurement, so the panel does not end up beside "Настройки"; levels above the sidebar root are not considered at all — otherwise the panel would sit above the whole sidebar. Height is up to 30vh, the pin list scrolls inside. Manual collapsing is remembered per-browser; in rail mode the panel shows **only the icon and the count** |
+| "Pinned" block | Inside the sidebar footer, **above the "Settings" row**. The location is derived only from its own anchor marker: the entire chain of containers from it upwards is collected, and the panel seats itself before the branch that leads to the anchor. Containers that lay out their children in a row (the stock `footerActions` is exactly that) are skipped by measurement, so the panel does not end up beside "Settings"; levels above the sidebar root are not considered at all — otherwise the panel would sit above the whole sidebar. Height is up to 30vh, the pin list scrolls inside. Manual collapsing is remembered per-browser; in rail mode the panel shows **only the icon and the count** |
 | Pin row | Click — open the session; `×` on the right — unpin (appears on hover) |
 | Button in the session row | 📌 when hovering over the row — pin/unpin. The session is determined via the React fiber, with a fallback to a nested `span` with a unique title |
 | Button in the session header | Toggle for pinning the open session (the `conversation.session.header.actions` slot) |
@@ -77,7 +77,7 @@ node --test "test/*.test.mjs"                                     # 43 tests
 dsh --profile web --dump-config | Select-String "sidebar-pins"    # loader row
 ```
 
-Directly above the "Настройки" button, "📌 ЗАКРЕПЛЁННЫЕ (3)" will appear — a panel 30vh high
+Directly above the "Settings" button, "📌 PINNED (3)" will appear — a panel 30vh high
 with scrolling; the session list stays above.
 
 If the panel is missing, the plugin **will say why itself** — in the browser console:
@@ -131,7 +131,7 @@ then remove it. After removal, an unused `session-pin` section will remain in
   in the regular list: the browser order lives in the core's props-store, which is inaccessible to
   plugins.
 * **The panel height is up to `30vh`** (the sidebar occupies the window height), not a fixed number
-  of pixels; if the sidebar is short, the panel yields space rather than squeezing "Настройки" off
+  of pixels; if the sidebar is short, the panel yields space rather than squeezing "Settings" off
   the edge. A collapsed panel (and any panel in rail mode) occupies only the header row.
 * Session row identification relies on the React fiber (`__reactFiber$…`, React 18) with a fallback
   to **any nested** `span` with a unique title: with duplicate titles the button will not appear
@@ -144,12 +144,12 @@ then remove it. After removal, an unused `session-pin` section will remain in
   `div` around each entry of the footer slot, while `footerActions` itself lays out its children
   **in a row**. Therefore, instead of a fixed chain, the entire path upwards from the anchor is
   collected, and the location is chosen by measurement: the container must lay out its children in
-  a column (otherwise the panel would lie beside "Настройки"), and the panel must end up above the
-  "Настройки" row. Levels above the sidebar root are not considered: from there the panel would
+  a column (otherwise the panel would lie beside "Settings"), and the panel must end up above the
+  "Settings" row. Levels above the sidebar root are not considered: from there the panel would
   land above the whole sidebar. The chosen location and the discarded ones are visible in the
   diagnostics (`seat`, `seatLabel`, `skipped`), and the last resort is the end of the nearest
   "column" container, that is, the panel stays inside the sidebar. The style node is reinstalled on
-  every pass: a panel without styles would grow to fit its content and squeeze "Настройки" off the
+  every pass: a panel without styles would grow to fit its content and squeeze "Settings" off the
   edge.
 * The plugin **deliberately imports no external package at all**. With a `link:` install into the
   profile this is also forced: Node resolves bare imports from the package's real path (the working
@@ -181,7 +181,7 @@ node --test "test/*.test.mjs"
 43 tests: pure helpers (id normalization, legacy document parsing, row models, dictionary, toggle),
 the host half (registration, schema, migration, envelope), the chain of locations from its own
 anchor (including the extra wrappers of the live host and the absence of session rows), rejection
-of row containers, seating above the "Настройки" row, the geometric check and the transition to the
+of row containers, seating above the "Settings" row, the geometric check and the transition to the
 next location, the last resort inside the sidebar, behaviour in rail mode (icon and count only),
 no redraw without changes, observed targets, restoration of removed panel and style node, buttons
 in rows (fiber / nested title / ambiguity), the delegated click, the header button, fallback to
